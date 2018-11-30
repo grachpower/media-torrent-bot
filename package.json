@@ -1,0 +1,35 @@
+{
+  "name": "media-torrent-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "rimraf": "rimraf",
+    "clean:dist": "npm run rimraf -- dist",
+    "build": "npm run clean:dist && tsc",
+    "start": "ts-node ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/grachpower/media-torrent-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/grachpower/media-torrent-bot/issues"
+  },
+  "homepage": "https://gitlab.com/grachpower/media-torrent-bot#README",
+  "dependencies": {
+    "@types/node": "^10.12.10",
+    "axios": "^0.18.0",
+    "rimraf": "^2.6.2",
+    "rxjs": "^6.3.3",
+    "telegraf": "^3.25.0",
+    "ts-loader": "^5.3.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webtorrent": "^0.102.4"
+  }
+}

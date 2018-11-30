@@ -1,0 +1,21 @@
+
+version: '2'
+services:
+  media-bot:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: media-bot
+    environment:
+      - BOT_TOKEN=732493397:AAHh6-qmaFmMei2BSsS2jqQr6KtVqRbKfQ4
+      - CHAT_ID=-297909830
+    volumes:
+    - ~/mediaserver:/app/dist/media
+    networks:
+      - media-network
+    ports:
+      - '8080:80'
+networks:
+  media-network:
+    driver: bridge
