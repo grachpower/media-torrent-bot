@@ -8,10 +8,14 @@ services:
       dockerfile: Dockerfile
     container_name: media-bot
     environment:
-      - BOT_TOKEN=TELEGRAM_BOT_TOKEN
-      - CHAT_ID=TELEGRAM_CHAT_IT
+      - BOT_TOKEN=TELEGRAMM_BOT_TOKEN
+      - CHAT_ID=TELEGRAM_CHAT_ID
+      - PROXY_HOST=SOCKS5_HOST
+      - PROXY_PORT=SOCKS5_PORT
+      - PROXY_LOGIN=SOCKS5_LOGIN
+      - PROXY_PASSWORD=SOCKS5_PASSWORD
     volumes:
-    - YOUR_PATH_TO_FOLDER:/app/dist/media
+    - ~/mediaserver:/app/dist/media
     networks:
       - media-network
 networks:

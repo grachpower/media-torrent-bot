@@ -1,8 +1,13 @@
 import * as WebTorrent from 'webtorrent';
 const Telegraf = require('telegraf');
+const SocksAgent = require('socks5-https-client/lib/Agent');
 
 const botToken = process.env.BOT_TOKEN;
 const chatId = process.env.CHAT_ID;
+const proxyHost = process.env.PROXY_HOST;
+const proxyPort = process.env.PROXY_PORT;
+const proxyLogin = process.env.PROXY_LOGIN;
+const proxyPassword = process.env.PROXY_PASSWORD;
 
 if (!botToken) {
     throw new Error('Bot token is not defined');
@@ -12,8 +17,23 @@ if (!chatId) {
     throw new Error('Chat id is not defined');
 }
 
-const telegrafBot = new Telegraf(botToken);
+let telegrafBot;
 const torrentCli = new WebTorrent();
+
+if (proxyHost && proxyPort && proxyLogin && proxyPassword) {
+    const socksAgent = new SocksAgent({
+        socksHost: proxyHost,
+        socksPort: proxyPort,
+        socksUsername: proxyLogin,
+        socksPassword: proxyPassword,
+    });
+
+    telegrafBot = new Telegraf(botToken, {
+        telegram: { agent: socksAgent }
+    });
+} else {
+    telegrafBot = new Telegraf(botToken);
+}
 
 const loadCommand = '/load';
 
@@ -26,6 +46,10 @@ telegrafBot.on('text', (ctx) => {
     if (text.startsWith(loadCommand)) {
         const magnetLink = text.slice('/load'.length).trim();
 
+        if (magnetLink.startsWith('https://') || magnetLink.startsWith('http://')) {
+            telegrafBot.telegram.sendMessage(chatId, `Cannot load from torrent file link :(`);
+            return;
+        }
         console.log('Magnet link: ', magnetLink);
         loadTorrent(magnetLink);
     }
