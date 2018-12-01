@@ -15,7 +15,7 @@ services:
       - PROXY_LOGIN=SOCKS5_LOGIN
       - PROXY_PASSWORD=SOCKS5_PASSWORD
     volumes:
-    - ~/mediaserver:/app/dist/media
+    - PATH_TO_FOLDER_TO_MOUNT:/app/dist/media
     networks:
       - media-network
 networks:
