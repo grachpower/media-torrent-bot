@@ -1,0 +1,19 @@
+apps:
+  - script   : ./dist/index.js
+    instances: 1
+    exec_mode: cluster
+    watch  : true
+    env    :
+      BOT_TOKEN: TELEGRAMM_BOT_TOKEN
+      CHAT_ID: TELEGRAM_CHAT_ID
+      PROXY_HOST: SOCKS5_HOST
+      PROXY_PORT: SOCKS5_PORT
+      PROXY_LOGIN: SOCKS5_LOGIN
+      PROXY_PASSWORD: SOCKS5_PASSWORD
+    env_production:
+      BOT_TOKEN: TELEGRAMM_BOT_TOKEN
+      CHAT_ID: TELEGRAM_CHAT_ID
+      PROXY_HOST: SOCKS5_HOST
+      PROXY_PORT: SOCKS5_PORT
+      PROXY_LOGIN: SOCKS5_LOGIN
+      PROXY_PASSWORD: SOCKS5_PASSWORD
