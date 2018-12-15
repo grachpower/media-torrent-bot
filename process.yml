@@ -2,7 +2,7 @@ apps:
   - script   : ./dist/index.js
     instances: 1
     exec_mode: cluster
-    watch  : true
+    watch  : false
     env    :
       BOT_TOKEN: TELEGRAMM_BOT_TOKEN
       CHAT_ID: TELEGRAM_CHAT_ID
